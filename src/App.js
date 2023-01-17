@@ -1,5 +1,5 @@
 function App() {
-  return <div className='App'>React/Firebase Market Place</div>;
+  return <h1>React/Firebase Market Place</h1>;
 }
 
 export default App;
