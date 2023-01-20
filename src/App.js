@@ -15,7 +15,7 @@ function App() {
         { path: '/', element: <Explore /> },
         { path: '/offers', element: <Offers /> },
         { path: '/profile', element: <Singin /> },
-        { path: '/signin', element: <Singin /> },
+        { path: '/sign-in', element: <Singin /> },
         { path: '/sign-up', element: <Signup /> },
         { path: '/forgot-password', element: <ForgotPassword /> },
       ],
