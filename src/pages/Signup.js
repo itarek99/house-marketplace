@@ -1,16 +1,30 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+import { AuthContext } from '../context/AuthProvider';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const { name, email, password } = formData;
+  const { user, updateUserInfo, signUpWithEmailAndPassword } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
     setFormData((prevState) => ({ ...prevState, [e.target.id]: e.target.value }));
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await signUpWithEmailAndPassword(email, password);
+      updateUserInfo({ displayName: name });
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -20,7 +34,7 @@ const Signup = () => {
           <p className='pageHeader'>Welcome Back!</p>
         </header>
 
-        <form>
+        <form onSubmit={handleSignUp}>
           <input
             type='text'
             className='nameInput'
