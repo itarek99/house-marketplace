@@ -1,6 +1,7 @@
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { AuthContext } from '../context/AuthProvider';
@@ -23,18 +24,15 @@ const Signup = () => {
     try {
       const userCredential = await signUpWithEmailAndPassword(email, password);
       const user = userCredential.user;
-
       updateUserInfo({ displayName: name });
-
       const fromDataCopy = { ...formData };
       delete fromDataCopy.password;
       fromDataCopy.timeStamp = serverTimestamp();
-
       await setDoc(doc(db, 'users', user.uid), fromDataCopy);
-
       navigate('/');
+      toast('Sign Up Successful!');
     } catch (error) {
-      console.log(error);
+      toast.error('Something Wrong!');
     }
   };
 
