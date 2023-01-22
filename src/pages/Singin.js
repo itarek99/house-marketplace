@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { AuthContext } from '../context/AuthProvider';
@@ -20,13 +21,13 @@ const Singin = () => {
     e.preventDefault();
     try {
       const result = await singInWithEmailPassword(email, password);
-      //TODO: add a toast
+
       if (result.user) {
+        toast('Sign In Successful!');
         navigate('/');
       }
     } catch (error) {
-      // TODO: Add error toast
-      console.log(error.message);
+      toast.error('Something Wrong!');
     }
   };
 

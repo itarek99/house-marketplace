@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Main from './layouts/Main';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
@@ -23,7 +25,12 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={routes} />;
+  return (
+    <div>
+      <RouterProvider router={routes} />
+      <ToastContainer />
+    </div>
+  );
 }
 
 export default App;
