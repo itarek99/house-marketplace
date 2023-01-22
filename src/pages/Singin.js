@@ -1,16 +1,33 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+import { AuthContext } from '../context/AuthProvider';
 
 const Singin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const { email, password } = formData;
+  const { singInWithEmailPassword } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     e.preventDefault();
     setFormData((prevState) => ({ ...prevState, [e.target.id]: e.target.value }));
+  };
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await singInWithEmailPassword(email, password);
+      //TODO: add a toast
+      if (result.user) {
+        navigate('/');
+      }
+    } catch (error) {
+      // TODO: Add error toast
+      console.log(error.message);
+    }
   };
 
   return (
@@ -20,7 +37,7 @@ const Singin = () => {
           <p className='pageHeader'>Welcome Back!</p>
         </header>
 
-        <form>
+        <form onSubmit={handleSignIn}>
           <input
             type='email'
             className='emailInput'

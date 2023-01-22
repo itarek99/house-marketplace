@@ -3,6 +3,7 @@ import Main from './layouts/Main';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
 import Offers from './pages/Offers';
+import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import Singin from './pages/Singin';
 
@@ -14,7 +15,7 @@ function App() {
       children: [
         { path: '/', element: <Explore /> },
         { path: '/offers', element: <Offers /> },
-        { path: '/profile', element: <Singin /> },
+        { path: '/profile', element: <Profile /> },
         { path: '/sign-in', element: <Singin /> },
         { path: '/sign-up', element: <Signup /> },
         { path: '/forgot-password', element: <ForgotPassword /> },

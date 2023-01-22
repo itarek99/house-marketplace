@@ -1,14 +1,16 @@
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
 import { AuthContext } from '../context/AuthProvider';
+import { db } from '../firebase/firebase.config';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const { name, email, password } = formData;
-  const { user, updateUserInfo, signUpWithEmailAndPassword } = useContext(AuthContext);
+  const { updateUserInfo, signUpWithEmailAndPassword } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -20,7 +22,16 @@ const Signup = () => {
     e.preventDefault();
     try {
       const userCredential = await signUpWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
       updateUserInfo({ displayName: name });
+
+      const fromDataCopy = { ...formData };
+      delete fromDataCopy.password;
+      fromDataCopy.timeStamp = serverTimestamp();
+
+      await setDoc(doc(db, 'users', user.uid), fromDataCopy);
+
       navigate('/');
     } catch (error) {
       console.log(error);
