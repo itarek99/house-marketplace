@@ -7,7 +7,7 @@ import { db } from '../firebase/firebase.config';
 
 const Profile = () => {
   const [changeDetails, setChangeDetails] = useState(false);
-  const { user, userSignOut, updateUserInfo } = useContext(AuthContext);
+  const { user, userSignOut, updateUserInfo, setAuthLoading } = useContext(AuthContext);
   const [formData, setFormData] = useState({});
   const { email, name } = formData;
   const navigate = useNavigate();
@@ -33,11 +33,11 @@ const Profile = () => {
     try {
       if (user.displayName !== name) {
         await updateUserInfo({ displayName: name });
-
         const userRef = doc(db, 'users', user.uid);
         await updateDoc(userRef, {
           name,
         });
+        setAuthLoading(false);
       }
     } catch (error) {
       toast.error('Could Not Update Profile Details!');

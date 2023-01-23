@@ -17,14 +17,17 @@ const AuthProvider = ({ children }) => {
   const [authLoading, setAuthLoading] = useState(true);
 
   const signUpWithEmailAndPassword = (email, password) => {
+    setAuthLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const singInWithEmailPassword = (email, password) => {
+    setAuthLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const updateUserInfo = (updateInfo) => {
+    setAuthLoading(true);
     return updateProfile(auth.currentUser, updateInfo);
   };
 
@@ -48,6 +51,7 @@ const AuthProvider = ({ children }) => {
     singInWithEmailPassword,
     userSignOut,
     authLoading,
+    setAuthLoading,
   };
   return <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>;
 };

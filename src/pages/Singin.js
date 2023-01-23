@@ -9,7 +9,7 @@ const Singin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const { email, password } = formData;
-  const { singInWithEmailPassword } = useContext(AuthContext);
+  const { singInWithEmailPassword, authLoading } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -30,7 +30,7 @@ const Singin = () => {
       toast.error('Something Wrong!');
     }
   };
-
+  if (authLoading) return <h1>Loading</h1>;
   return (
     <>
       <div className='pageContainer'>
