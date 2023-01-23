@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg';
 import visibilityIcon from '../assets/svg/visibilityIcon.svg';
+import Spinner from '../components/Spinner';
 import { AuthContext } from '../context/AuthProvider';
 
 const Singin = () => {
@@ -30,7 +31,7 @@ const Singin = () => {
       toast.error('Something Wrong!');
     }
   };
-  if (authLoading) return <h1>Loading</h1>;
+  if (authLoading) return <Spinner />;
   return (
     <>
       <div className='pageContainer'>
