@@ -22,7 +22,7 @@ const Navbar = () => {
           <Link to='offers'>
             <li className='navbarListItem'>
               <OfferIcon fill={activeRoute('/offers') ? '#2c2c2c' : '#8f8f8f'} width='36px' height='36px' />
-              <p className={activeRoute('/offers') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Offer</p>
+              <p className={activeRoute('/offers') ? 'navbarListItemNameActive' : 'navbarListItemName'}>Offers</p>
             </li>
           </Link>
           <Link to='profile'>
