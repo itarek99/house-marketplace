@@ -32,7 +32,14 @@ function App() {
         { path: '/sign-in', element: <Singin /> },
         { path: '/sign-up', element: <Signup /> },
         { path: '/forgot-password', element: <ForgotPassword /> },
-        { path: '/create-listing', element: <CreateListing /> },
+        {
+          path: '/create-listing',
+          element: (
+            <PrivateRoute>
+              <CreateListing />
+            </PrivateRoute>
+          ),
+        },
       ],
     },
   ]);
