@@ -1,7 +1,9 @@
 import { doc, updateDoc } from 'firebase/firestore';
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import homeIcon from '../assets/svg/homeIcon.svg';
+import arrowRight from '../assets/svg/keyboardArrowRightIcon.svg';
 import { AuthContext } from '../context/AuthProvider';
 import { db } from '../firebase/firebase.config';
 
@@ -86,6 +88,12 @@ const Profile = () => {
             />
           </form>
         </div>
+
+        <Link to='/create-listing' className='createListing'>
+          <img src={homeIcon} alt='home' />
+          <p>Sell Or Rent Your Home</p>
+          <img src={arrowRight} alt='arrow right' />
+        </Link>
       </main>
     </div>
   );

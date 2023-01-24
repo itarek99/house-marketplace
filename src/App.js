@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Main from './layouts/Main';
 import Category from './pages/Category';
+import CreateListing from './pages/CreateListing';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
 import Offers from './pages/Offers';
@@ -31,6 +32,7 @@ function App() {
         { path: '/sign-in', element: <Singin /> },
         { path: '/sign-up', element: <Signup /> },
         { path: '/forgot-password', element: <ForgotPassword /> },
+        { path: '/create-listing', element: <CreateListing /> },
       ],
     },
   ]);
