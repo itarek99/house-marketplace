@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Main from './layouts/Main';
+import Category from './pages/Category';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
 import Offers from './pages/Offers';
@@ -18,6 +19,7 @@ function App() {
       children: [
         { path: '/', element: <Explore /> },
         { path: '/offers', element: <Offers /> },
+        { path: '/category/:categoryName', element: <Category /> },
         {
           path: '/profile',
           element: (
