@@ -2,6 +2,7 @@ import { collection, getDocs, limit, orderBy, query, where } from 'firebase/fire
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import ListingItem from '../components/ListingItem';
 import Spinner from '../components/Spinner';
 import { db } from '../firebase/firebase.config';
 
@@ -48,7 +49,7 @@ const Category = () => {
           <main>
             <ul className='categoryListings'>
               {listings.map((listing) => (
-                <h3>{listing.data.name}</h3>
+                <ListingItem key={listing.id} listing={listing.data} id={listing.id} />
               ))}
             </ul>
           </main>
