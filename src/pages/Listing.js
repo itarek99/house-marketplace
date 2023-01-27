@@ -8,7 +8,7 @@ import shareIcon from '../assets/svg/shareIcon.svg';
 const Listing = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [shareLink, setShareLink] = useState(false);
+  const [shareLinkCopied, setShareLinkCopied] = useState(false);
 
   const navigate = useNavigate();
   const params = useParams();
@@ -29,8 +29,18 @@ const Listing = () => {
 
   return (
     <main>
-      <div className='shareIconDiv'>
-        <img src={shareIcon} alt='' />
+      <div
+        onClick={() => {
+          navigator.clipboard.writeText(window.location.href);
+          setShareLinkCopied(true);
+          setTimeout(() => {
+            setShareLinkCopied(false);
+          }, 2000);
+        }}
+        className='shareIconDiv'
+      >
+        <img src={shareIcon} alt='share icon' />
+        {shareLinkCopied && <p className='linkCopied'>Link Copied</p>}
       </div>
     </main>
   );
