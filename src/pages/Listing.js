@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../firebase/firebase.config';
 
+import shareIcon from '../assets/svg/shareIcon.svg';
+
 const Listing = () => {
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,6 +27,12 @@ const Listing = () => {
     fetchListing();
   }, [params.listingId]);
 
-  return <div>Listing</div>;
+  return (
+    <main>
+      <div className='shareIconDiv'>
+        <img src={shareIcon} alt='' />
+      </div>
+    </main>
+  );
 };
 export default Listing;
