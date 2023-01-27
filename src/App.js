@@ -6,6 +6,7 @@ import Category from './pages/Category';
 import CreateListing from './pages/CreateListing';
 import Explore from './pages/Explore';
 import ForgotPassword from './pages/ForgotPassword';
+import Listing from './pages/Listing';
 import Offers from './pages/Offers';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
@@ -32,6 +33,7 @@ function App() {
         { path: '/sign-in', element: <Singin /> },
         { path: '/sign-up', element: <Signup /> },
         { path: '/forgot-password', element: <ForgotPassword /> },
+        { path: '/category/:categoryName/:listingId', element: <Listing /> },
         {
           path: '/create-listing',
           element: (
